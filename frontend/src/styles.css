@@ -1,0 +1,285 @@
+/* ------------------------------------------------------------------
+   Design tokens
+   Concept: a "contract ledger" — the visual register a legal/procurement
+   clerk would keep. Hairline rules instead of card shadows, sequential
+   numbering only where content is genuinely sequential (lifecycle steps),
+   a serif for anything that reads like a legal document, a plain sans
+   for interface chrome.
+-------------------------------------------------------------------*/
+:root {
+  --ink: #1B1E24;
+  --ink-soft: #4B5563;
+  --paper: #E9E4D8;
+  --paper-raised: #F3F0E7;
+  --slate: #2C3E50;
+  --slate-deep: #1F2E3B;
+  --brass: #96702E;
+  --brass-soft: #C9A45C;
+  --forest: #3E5C46;
+  --rust: #8C3B2A;
+  --line: #C9C1AF;
+  --line-soft: #DAD3C2;
+
+  --font-serif: "Source Serif 4", Georgia, serif;
+  --font-sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root { height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  color: var(--slate-deep);
+  margin: 0 0 0.4em;
+}
+
+h1 { font-size: 2rem; letter-spacing: -0.01em; }
+h2 { font-size: 1.4rem; }
+h3 { font-size: 1.1rem; }
+
+a { color: var(--slate-deep); }
+
+button {
+  font-family: var(--font-sans);
+  cursor: pointer;
+}
+
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ---------------- Sidebar ---------------- */
+.sidebar {
+  width: 240px;
+  background: var(--slate-deep);
+  color: #E6E2D6;
+  padding: 28px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.brand {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: #fff;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  padding-bottom: 16px;
+}
+
+.brand small {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  color: var(--brass-soft);
+  letter-spacing: 0.04em;
+  margin-top: 4px;
+}
+
+.nav-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 2px; }
+
+.nav-list a {
+  display: block;
+  color: #C9C6BA;
+  text-decoration: none;
+  padding: 9px 10px;
+  border-radius: 3px;
+  font-size: 0.92rem;
+}
+
+.nav-list a:hover, .nav-list a.active {
+  background: rgba(201, 164, 92, 0.14);
+  color: #fff;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  padding-top: 14px;
+  font-size: 0.8rem;
+  color: #9BA0A8;
+}
+
+/* ---------------- Main content ---------------- */
+.main {
+  flex: 1;
+  padding: 36px 44px;
+  max-width: 1180px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 28px;
+  gap: 20px;
+}
+
+.topbar .role-pill {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  color: var(--slate-deep);
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  padding: 4px 9px;
+  border-radius: 3px;
+}
+
+/* ---------------- Ledger card ---------------- */
+.ledger-card {
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  padding: 22px 24px;
+  margin-bottom: 20px;
+}
+
+.ledger-card + .ledger-card { margin-top: 20px; }
+
+.ledger-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+.ledger-row:last-child { border-bottom: none; }
+
+.field-label {
+  font-size: 0.75rem;
+  text-transform: none;
+  color: var(--ink-soft);
+  margin-bottom: 4px;
+}
+
+/* ---------------- Buttons ---------------- */
+.btn {
+  border: 1px solid var(--slate-deep);
+  background: var(--slate-deep);
+  color: #fff;
+  padding: 9px 16px;
+  border-radius: 3px;
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+.btn:hover { background: var(--slate); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn-outline {
+  background: transparent;
+  color: var(--slate-deep);
+  border: 1px solid var(--slate-deep);
+}
+.btn-outline:hover { background: rgba(44,62,80,0.06); }
+
+.btn-brass {
+  background: var(--brass);
+  border-color: var(--brass);
+}
+.btn-brass:hover { background: #7f5f27; }
+
+.btn-danger {
+  background: var(--rust);
+  border-color: var(--rust);
+}
+
+.btn-sm { padding: 6px 11px; font-size: 0.8rem; }
+
+/* ---------------- Forms ---------------- */
+label { display: block; font-size: 0.85rem; margin-bottom: 5px; color: var(--ink-soft); }
+
+input, select, textarea {
+  width: 100%;
+  padding: 9px 11px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  background: #fff;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: 2px solid var(--brass-soft);
+  outline-offset: 1px;
+}
+
+textarea { min-height: 90px; resize: vertical; }
+
+.form-row { display: flex; gap: 14px; }
+.form-row > div { flex: 1; }
+
+.error-text { color: var(--rust); font-size: 0.82rem; margin-top: -8px; margin-bottom: 12px; }
+.help-text { color: var(--ink-soft); font-size: 0.8rem; margin-top: -8px; margin-bottom: 12px; }
+
+/* ---------------- Status badges ---------------- */
+.badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  padding: 3px 8px;
+  border-radius: 3px;
+  border: 1px solid transparent;
+}
+.badge-draft { background: #EDE9DD; color: #6b6248; border-color: var(--line); }
+.badge-negotiation { background: #E7EEF7; color: #2C4A6E; }
+.badge-pending { background: #F6EBD3; color: var(--brass); border-color: var(--brass-soft); }
+.badge-approved { background: #E4EFE6; color: var(--forest); }
+.badge-active { background: #E1ECE6; color: var(--forest); border-color: var(--forest); }
+.badge-disputed { background: #F5E1DC; color: var(--rust); border-color: var(--rust); }
+.badge-completed { background: #E2E7EA; color: var(--slate-deep); }
+.badge-closed { background: #ddd; color: #555; }
+
+/* ---------------- Lifecycle stepper ---------------- */
+.stepper { display: flex; margin: 8px 0 24px; }
+.step {
+  flex: 1;
+  text-align: center;
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+  padding-bottom: 10px;
+  border-bottom: 3px solid var(--line);
+  position: relative;
+}
+.step.done { border-color: var(--forest); color: var(--forest); }
+.step.current { border-color: var(--brass); color: var(--brass); font-weight: 600; }
+
+/* ---------------- Table ---------------- */
+table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+th { text-align: left; font-weight: 600; color: var(--ink-soft); font-size: 0.75rem; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+td { padding: 10px; border-bottom: 1px solid var(--line-soft); }
+tr:hover td { background: rgba(150,112,46,0.04); }
+
+/* ---------------- Misc ---------------- */
+.muted { color: var(--ink-soft); }
+.mono { font-family: var(--font-mono); font-size: 0.8rem; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.empty-state { text-align: center; padding: 40px 20px; color: var(--ink-soft); }
+.tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); margin-bottom: 20px; }
+.tab { padding: 10px 14px; font-size: 0.88rem; color: var(--ink-soft); border-bottom: 2px solid transparent; }
+.tab.active { color: var(--slate-deep); border-color: var(--brass); font-weight: 600; }
+.auth-shell { max-width: 420px; margin: 8vh auto; }
+.callout {
+  border-left: 3px solid var(--brass);
+  background: rgba(150,112,46,0.06);
+  padding: 12px 14px;
+  font-size: 0.86rem;
+  margin-bottom: 16px;
+}
+.callout.error { border-color: var(--rust); background: rgba(140,59,42,0.06); }
+.callout.success { border-color: var(--forest); background: rgba(62,92,70,0.07); }
